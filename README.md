@@ -7,6 +7,7 @@ Job seekers bounce between LinkedIn, Handshake, company career pages and spreads
 ## Features
 
 **In scope this semester**
+
 - Job feed built from Greenhouse, Lever and Adzuna (official APIs only, no scraping)
 - Duplicate detection across sources
 - Saved filters and a match score for each job
@@ -15,6 +16,7 @@ Job seekers bounce between LinkedIn, Handshake, company career pages and spreads
 - Resume tailoring with Azure OpenAI, exported to PDF and linked to the application
 
 **Future work**
+
 - Browser extension for one-click tracking
 - Email digest
 - Interview prep notes per application
@@ -23,18 +25,18 @@ Job seekers bounce between LinkedIn, Handshake, company career pages and spreads
 
 ![Architecture diagram](docs/architecture/tailormade-architecture.png)
 
-| Part | Azure service | What it does |
-|---|---|---|
-| `frontend/` | Static Web Apps (Free) | React dashboard, built-in sign-in |
-| `api/` | SWA managed Functions (Python) | Jobs, filters, tracker and tailoring endpoints |
-| `worker/` | Function App (Python, Flex Consumption) | Timer crawler every 2 hours, queue processor |
-| `db/` | Azure SQL Database (free offer) | Jobs, users, filters, applications, resume versions |
-| | Blob Storage | Raw crawl snapshots, uploaded resumes, tailored PDFs |
-| | Queue Storage | Hands each crawled job to the processor |
-| | SignalR Service (Free) | Pushes live alerts to the dashboard |
-| | Azure OpenAI | Resume tailoring and skill-gap analysis |
-| | Key Vault, Application Insights | Secrets and monitoring |
-| `.github/` | GitHub Actions | Build, test and deploy |
+| Part        | Azure service                           | What it does                                         |
+| ----------- | --------------------------------------- | ---------------------------------------------------- |
+| `frontend/` | Static Web Apps (Free)                  | React dashboard, built-in sign-in                    |
+| `api/`      | SWA managed Functions (Python)          | Jobs, filters, tracker and tailoring endpoints       |
+| `worker/`   | Function App (Python, Flex Consumption) | Timer crawler every 2 hours, queue processor         |
+| `db/`       | Azure SQL Database (free offer)         | Jobs, users, filters, applications, resume versions  |
+|             | Blob Storage                            | Raw crawl snapshots, uploaded resumes, tailored PDFs |
+|             | Queue Storage                           | Hands each crawled job to the processor              |
+|             | SignalR Service (Free)                  | Pushes live alerts to the dashboard                  |
+|             | Azure OpenAI                            | Resume tailoring and skill-gap analysis              |
+|             | Key Vault, Application Insights         | Secrets and monitoring                               |
+| `.github/`  | GitHub Actions                          | Build, test and deploy                               |
 
 More detail: [docs/architecture.md](docs/architecture.md). The editable diagram is [docs/architecture/tailormade-architecture.drawio](docs/architecture/tailormade-architecture.drawio).
 
@@ -52,14 +54,14 @@ docs/       Architecture notes, diagram, branching strategy
 
 ## Team
 
-| Name | Role | Owns |
-|---|---|---|
-| Johnny Zhu | Backend developer | Worker: crawler, queue processing, dedupe, scoring, live alerts. Azure deployment. |
-| Lina Romero | Backend developer | API: jobs and filter endpoints, tracker, resume tailoring |
-| Ebulo Mejia | Database developer | Schema, indexes, seed data, filter queries |
-| Ayomide Ogunbode | Front-end developer | Job feed, tracker board, resume builder UI, live alerts |
-| Joshua Okeke | Researcher | Job source APIs and terms, tailoring prompts, cost estimate, testing |
-| Dylan Wu | Flex | CI/CD, infrastructure templates, diagram, presentation |
+| Name             | Role                | Owns                                                                               |
+| ---------------- | ------------------- | ---------------------------------------------------------------------------------- |
+| Johnny Zhu       | Backend developer   | Worker: crawler, queue processing, dedupe, scoring, live alerts. Azure deployment. |
+| Lina Romero      | Backend developer   | API: jobs and filter endpoints, tracker, resume tailoring                          |
+| Ebulo Mejia      | Database developer  | Schema, indexes, seed data, filter queries                                         |
+| Ayomide Ogunbode | Front-end developer | Job feed, tracker board, resume builder UI, live alerts                            |
+| Joshua Okeke     | Researcher          | Job source APIs and terms, tailoring prompts, cost estimate, testing               |
+| Dylan Wu         | Flex                | CI/CD, infrastructure templates, diagram, presentation                             |
 
 ## Local setup
 
@@ -71,6 +73,7 @@ cd tailormade
 ```
 
 **Frontend**
+
 ```bash
 cd frontend
 npm install
@@ -78,6 +81,7 @@ npm run dev        # http://localhost:5173
 ```
 
 **API**
+
 ```bash
 cd api
 python -m venv .venv
@@ -88,6 +92,7 @@ func start                      # http://localhost:7071/api/health
 ```
 
 **Worker**
+
 ```bash
 cd worker
 python -m venv .venv
@@ -101,6 +106,7 @@ func start                      # runs the timer and queue functions
 ```
 
 To trigger the crawler without waiting for the timer while `func start` is running:
+
 ```bash
 curl -X POST http://localhost:7071/admin/functions/crawl_jobs -H "Content-Type: application/json" -d "{}"
 ```
