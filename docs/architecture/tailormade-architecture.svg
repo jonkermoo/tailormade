@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1640 1120" width="1640" height="1120" font-family="Segoe UI, Arial, sans-serif">
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6B7280"/></marker></defs>
+<rect width="1640" height="1120" fill="#FFFFFF"/>
+<text x="30" y="36" font-size="20" font-weight="600" fill="#1F2937">TailorMade on Azure: a timed pipeline finds and scores jobs; one web app serves users</text>
+<text x="30" y="58" font-size="13" fill="#4B5563">Numbers 1–7 follow a new posting from source to the user&#x27;s screen. Dashed arrows are CI/CD.</text>
+<rect x="250" y="70" width="1110" height="840" rx="12" fill="none" stroke="#0078D4" stroke-width="2"/>
+<text x="266" y="96" font-size="15" font-weight="600" fill="#0078D4">Microsoft Azure  ·  resource group rg-tailormade</text>
+<rect x="280" y="115" width="970" height="175" rx="10" fill="none" stroke="#6B7280" stroke-width="1.25" stroke-dasharray="6 4"/>
+<text x="296" y="138" font-size="13" font-weight="600" fill="#4B5563">Ingestion pipeline  ·  Worker Function App (Python, Flex Consumption)</text>
+<rect x="280" y="560" width="560" height="180" rx="10" fill="#F3F8FD" stroke="#0078D4" stroke-width="1.25"/>
+<text x="296" y="730" font-size="13" font-weight="600" fill="#1F2937">Azure Static Web Apps (Free)  ·  built-in sign-in</text>
+<rect x="280" y="780" width="1050" height="100" rx="10" fill="#F5F5F5" stroke="#6B7280" stroke-width="1"/>
+<text x="296" y="802" font-size="13" font-weight="600" fill="#4B5563">Shared services (used by API and worker)</text>
+<rect x="310" y="160" width="220" height="100" rx="8" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.25"/>
+<text x="420.0" y="198.0" text-anchor="middle" font-size="14" font-weight="600" fill="#1F2937">Queue processor</text>
+<text x="420.0" y="217.0" text-anchor="middle" font-size="12" fill="#4B5563">Queue-trigger Function</text>
+<text x="420.0" y="234.0" text-anchor="middle" font-size="12" fill="#4B5563">dedupe · match score</text>
+<rect x="650" y="160" width="220" height="100" rx="8" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.25"/>
+<text x="760.0" y="198.0" text-anchor="middle" font-size="14" font-weight="600" fill="#1F2937">Queue Storage</text>
+<text x="760.0" y="217.0" text-anchor="middle" font-size="12" fill="#4B5563">one message per job</text>
+<text x="760.0" y="234.0" text-anchor="middle" font-size="12" fill="#4B5563">auto-retry, poison queue</text>
+<rect x="990" y="160" width="220" height="100" rx="8" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.25"/>
+<text x="1100.0" y="198.0" text-anchor="middle" font-size="14" font-weight="600" fill="#1F2937">Crawler</text>
+<text x="1100.0" y="217.0" text-anchor="middle" font-size="12" fill="#4B5563">Timer-trigger Function</text>
+<text x="1100.0" y="234.0" text-anchor="middle" font-size="12" fill="#4B5563">runs every 2 hours</text>
+<rect x="310" y="380" width="220" height="100" rx="8" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.25"/>
+<text x="420.0" y="418.0" text-anchor="middle" font-size="14" font-weight="600" fill="#1F2937">Azure SignalR Service</text>
+<text x="420.0" y="437.0" text-anchor="middle" font-size="12" fill="#4B5563">Free tier, serverless mode</text>
+<text x="420.0" y="454.0" text-anchor="middle" font-size="12" fill="#4B5563">real-time alerts</text>
+<rect x="650" y="380" width="220" height="100" rx="8" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.25"/>
+<text x="760.0" y="418.0" text-anchor="middle" font-size="14" font-weight="600" fill="#1F2937">Azure SQL Database</text>
+<text x="760.0" y="437.0" text-anchor="middle" font-size="12" fill="#4B5563">serverless free offer</text>
+<text x="760.0" y="454.0" text-anchor="middle" font-size="12" fill="#4B5563">jobs · users · tracker</text>
+<rect x="990" y="380" width="220" height="100" rx="8" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.25"/>
+<text x="1100.0" y="418.0" text-anchor="middle" font-size="14" font-weight="600" fill="#1F2937">Blob Storage</text>
+<text x="1100.0" y="437.0" text-anchor="middle" font-size="12" fill="#4B5563">raw crawl snapshots</text>
+<text x="1100.0" y="454.0" text-anchor="middle" font-size="12" fill="#4B5563">resumes · tailored PDFs</text>
+<rect x="310" y="610" width="220" height="100" rx="8" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.25"/>
+<text x="420.0" y="656.5" text-anchor="middle" font-size="14" font-weight="600" fill="#1F2937">React dashboard</text>
+<text x="420.0" y="675.5" text-anchor="middle" font-size="12" fill="#4B5563">feed · tracker · resume editor</text>
+<rect x="590" y="610" width="220" height="100" rx="8" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.25"/>
+<text x="700.0" y="648.0" text-anchor="middle" font-size="14" font-weight="600" fill="#1F2937">API Functions (Python)</text>
+<text x="700.0" y="667.0" text-anchor="middle" font-size="12" fill="#4B5563">jobs, filters, tracker</text>
+<text x="700.0" y="684.0" text-anchor="middle" font-size="12" fill="#4B5563">profile, tailor, PDF</text>
+<rect x="990" y="610" width="220" height="100" rx="8" fill="#E6F2FB" stroke="#0078D4" stroke-width="2"/>
+<text x="1100.0" y="648.0" text-anchor="middle" font-size="14" font-weight="600" fill="#1F2937">Azure OpenAI</text>
+<text x="1100.0" y="667.0" text-anchor="middle" font-size="12" fill="#4B5563">gpt-4o-mini</text>
+<text x="1100.0" y="684.0" text-anchor="middle" font-size="12" fill="#4B5563">tailors resume + skill gap</text>
+<rect x="310" y="812" width="340" height="56" rx="8" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.25"/>
+<text x="480.0" y="835" text-anchor="middle" font-size="14" font-weight="600" fill="#1F2937">Azure Key Vault</text>
+<text x="480.0" y="854" text-anchor="middle" font-size="12" fill="#4B5563">API keys, secrets via managed identity</text>
+<rect x="990" y="812" width="320" height="56" rx="8" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.25"/>
+<text x="1150.0" y="835" text-anchor="middle" font-size="14" font-weight="600" fill="#1F2937">Application Insights</text>
+<text x="1150.0" y="854" text-anchor="middle" font-size="12" fill="#4B5563">logs, failures, budget alert</text>
+<rect x="20" y="610" width="170" height="100" rx="8" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.25"/>
+<text x="105.0" y="656.5" text-anchor="middle" font-size="14" font-weight="600" fill="#1F2937">Job seeker</text>
+<text x="105.0" y="675.5" text-anchor="middle" font-size="12" fill="#4B5563">web browser</text>
+<rect x="1400" y="140" width="210" height="140" rx="8" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.25"/>
+<text x="1505.0" y="189.5" text-anchor="middle" font-size="14" font-weight="600" fill="#1F2937">Job source APIs</text>
+<text x="1505.0" y="208.5" text-anchor="middle" font-size="12" fill="#4B5563">Adzuna</text>
+<text x="1505.0" y="225.5" text-anchor="middle" font-size="12" fill="#4B5563">USAJobs</text>
+<text x="1505.0" y="242.5" text-anchor="middle" font-size="12" fill="#4B5563">Greenhouse · Lever boards</text>
+<rect x="310" y="960" width="220" height="80" rx="8" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.25"/>
+<text x="420.0" y="996.5" text-anchor="middle" font-size="14" font-weight="600" fill="#1F2937">GitHub repository</text>
+<text x="420.0" y="1015.5" text-anchor="middle" font-size="12" fill="#4B5563">main + feature/* branches</text>
+<rect x="650" y="960" width="260" height="80" rx="8" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.25"/>
+<text x="780.0" y="996.5" text-anchor="middle" font-size="14" font-weight="600" fill="#1F2937">GitHub Actions</text>
+<text x="780.0" y="1015.5" text-anchor="middle" font-size="12" fill="#4B5563">test + deploy on merge to main</text>
+<path d="M1400 210 L1210 210" fill="none" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arr)"/>
+<text x="1325" y="200" text-anchor="middle" font-size="12" font-weight="600" fill="#1F2937">1  new postings</text>
+<path d="M1100 260 L1100 380" fill="none" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arr)"/>
+<text x="1110" y="325" text-anchor="start" font-size="12" font-weight="600" fill="#1F2937">2  raw JSON snapshot</text>
+<path d="M990 210 L870 210" fill="none" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arr)"/>
+<text x="930" y="200" text-anchor="middle" font-size="12" font-weight="600" fill="#1F2937">3  enqueue jobs</text>
+<path d="M650 210 L530 210" fill="none" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arr)"/>
+<text x="590" y="200" text-anchor="middle" font-size="12" font-weight="600" fill="#1F2937">4  trigger</text>
+<path d="M500 260 L500 330 L720 330 L720 380" fill="none" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arr)"/>
+<text x="610" y="322" text-anchor="middle" font-size="12" font-weight="600" fill="#1F2937">5  dedupe, score, save</text>
+<path d="M340 260 L340 380" fill="none" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arr)"/>
+<text x="350" y="325" text-anchor="start" font-size="12" font-weight="600" fill="#1F2937">6  alert if score ≥ 70</text>
+<path d="M420 480 L420 610" fill="none" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arr)"/>
+<text x="430" y="540" text-anchor="start" font-size="12" font-weight="600" fill="#1F2937">7  live push</text>
+<path d="M190 660 L310 660" fill="none" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arr)"/>
+<text x="197" y="650" text-anchor="start" font-size="12" font-weight="400" fill="#1F2937">HTTPS</text>
+<path d="M530 660 L590 660" fill="none" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arr)"/>
+<text x="560" y="650" text-anchor="middle" font-size="12" font-weight="400" fill="#1F2937">REST</text>
+<path d="M690 610 L690 480" fill="none" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arr)"/>
+<text x="680" y="545" text-anchor="end" font-size="12" font-weight="400" fill="#1F2937">jobs, tracker</text>
+<path d="M790 610 L790 530 L1040 530 L1040 480" fill="none" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arr)"/>
+<text x="915" y="522" text-anchor="middle" font-size="12" font-weight="400" fill="#1F2937">resume PDFs</text>
+<path d="M810 660 L990 660" fill="none" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arr)"/>
+<text x="900" y="650" text-anchor="middle" font-size="12" font-weight="400" fill="#1F2937">tailor prompt</text>
+<path d="M530 1000 L650 1000" fill="none" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arr)"/>
+<text x="590" y="990" text-anchor="middle" font-size="12" font-weight="400" fill="#1F2937">merge to main</text>
+<path d="M720 960 L720 740" fill="none" stroke="#6B7280" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arr)"/>
+<text x="730" y="935" text-anchor="start" font-size="12" font-weight="400" fill="#1F2937">deploy site + API</text>
+<path d="M910 1000 L1380 1000 L1380 250 L1250 250" fill="none" stroke="#6B7280" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arr)"/>
+<text x="1390" y="620" text-anchor="start" font-size="12" font-weight="400" fill="#1F2937">deploy worker</text>
+</svg>
