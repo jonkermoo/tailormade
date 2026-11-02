@@ -60,7 +60,7 @@ docs/       Architecture notes, diagram, branching strategy
 | Lina Romero      | Backend developer   | API: jobs and filter endpoints, tracker, resume tailoring                          |
 | Ebulo Mejia      | Database developer  | Schema, indexes, seed data, filter queries                                         |
 | Ayomide Ogunbode | Front-end developer | Job feed, tracker board, resume builder UI, live alerts                            |
-| Joshua Okeke     | Researcher          | Job source APIs and terms, tailoring prompts, cost estimate, testing               |
+| Joshua Okeke     | Cloud architect     | Job source APIs and terms, tailoring prompts, cost estimate, testing               |
 | Dylan Wu         | Flex                | CI/CD, infrastructure templates, diagram, presentation                             |
 
 ## Local setup
