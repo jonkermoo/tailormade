@@ -73,3 +73,12 @@ CREATE TABLE applications (
     updated_at          DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
     CONSTRAINT uq_applications_user_job UNIQUE (user_id, job_id)
 );
+
+-- Index for filtering job listings
+CREATE INDEX ix_jobs_feed
+ON jobs (posted_at DESC, is_remote, location);
+
+-- Index for tracking applications by user and status
+CREATE INDEX ix_applications_user_status
+ON applications (user_id, status);
+
