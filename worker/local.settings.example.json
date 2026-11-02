@@ -1,0 +1,13 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "GREENHOUSE_BOARDS": "stripe,discord",
+    "LEVER_COMPANIES": "spotify,palantir",
+    "CRAWL_KEYWORDS": "engineer,developer,intern,analyst",
+    "ADZUNA_APP_ID": "",
+    "ADZUNA_APP_KEY": "",
+    "ADZUNA_QUERY": "software engineer"
+  }
+}
