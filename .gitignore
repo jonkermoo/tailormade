@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.python_packages/
+
+# Node
+node_modules/
+dist/
+
+# Azure Functions local settings and storage emulator data (may hold secrets)
+local.settings.json
+__azurite_db*.json
+__blobstorage__/
+__queuestorage__/
+
+# Editors and OS
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local tooling
+.env
+.env.*
