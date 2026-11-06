@@ -1,0 +1,7 @@
+[
+  {"id": 1, "company": "Stripe", "title": "Software Engineer Intern, Backend", "location": "Seattle, WA", "is_remote": false, "posted_at": "2026-11-01T14:00:00Z", "url": "https://stripe.com/jobs"},
+  {"id": 2, "company": "Datadog", "title": "Junior Data Engineer", "location": "New York, NY", "is_remote": false, "posted_at": "2026-10-30T09:30:00Z", "url": "https://careers.datadoghq.com"},
+  {"id": 3, "company": "GitLab", "title": "Backend Engineer (Python)", "location": "Remote, US", "is_remote": true, "posted_at": "2026-10-29T17:15:00Z", "url": "https://about.gitlab.com/jobs"},
+  {"id": 4, "company": "U.S. Census Bureau", "title": "IT Specialist (Data Management)", "location": "Suitland, MD", "is_remote": false, "posted_at": "2026-10-27T12:00:00Z", "url": "https://www.usajobs.gov"},
+  {"id": 5, "company": "Duolingo", "title": "Machine Learning Engineer, New Grad", "location": "Pittsburgh, PA", "is_remote": true, "posted_at": "2026-10-25T08:45:00Z", "url": "https://careers.duolingo.com"}
+]
