@@ -54,3 +54,45 @@ body {
   font-size: 0.85rem;
   color: #57606a;
 }
+
+/* Job feed */
+.job-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.job-card {
+  border: 1px solid #d0d7de;
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+
+.job-card h3 {
+  margin: 0 0 4px;
+  font-size: 1rem;
+}
+
+.job-meta {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #57606a;
+}
+
+.job-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.tag {
+  margin-left: 8px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: #ddf4ff;
+  color: #0969da;
+  font-size: 0.75rem;
+}

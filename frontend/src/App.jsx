@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import JobFeed from './JobFeed.jsx'
 
 const TABS = {
   jobs: {
@@ -46,7 +47,7 @@ function App() {
       </nav>
 
       <section className="panel">
-        <p>{TABS[tab].body}</p>
+        {tab === 'jobs' ? <JobFeed /> : <p>{TABS[tab].body}</p>}
       </section>
     </div>
   )
