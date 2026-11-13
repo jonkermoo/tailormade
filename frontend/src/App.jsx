@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import JobFeed from './JobFeed.jsx'
+import Tracker from './Tracker.jsx'
 
 const TABS = {
   jobs: {
@@ -47,7 +48,9 @@ function App() {
       </nav>
 
       <section className="panel">
-        {tab === 'jobs' ? <JobFeed /> : <p>{TABS[tab].body}</p>}
+        {tab === 'jobs' && <JobFeed />}
+        {tab === 'tracker' && <Tracker />}
+        {tab === 'resume' && <p>{TABS.resume.body}</p>}
       </section>
     </div>
   )

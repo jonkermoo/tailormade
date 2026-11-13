@@ -96,3 +96,139 @@ body {
   color: #0969da;
   font-size: 0.75rem;
 }
+
+/* Buttons used in cards */
+.job-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.job-actions button,
+.notes-actions button {
+  border: 1px solid #0969da;
+  background: #0969da;
+  color: #fff;
+  border-radius: 6px;
+  padding: 4px 12px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.85rem;
+}
+
+.job-actions button:disabled {
+  background: #fff;
+  color: #57606a;
+  border-color: #d0d7de;
+  cursor: default;
+}
+
+.notes-actions button.secondary {
+  background: #fff;
+  color: #1f2328;
+  border-color: #d0d7de;
+}
+
+.error {
+  margin: 0 0 12px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: #ffebe9;
+  color: #cf222e;
+  font-size: 0.9rem;
+}
+
+/* Tracker board */
+.board {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(160px, 1fr));
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.column {
+  background: #f6f8fa;
+  border: 1px solid #d0d7de;
+  border-radius: 8px;
+  padding: 10px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.column.drop-target {
+  border-color: #0969da;
+  background: #ddf4ff;
+}
+
+.column-title {
+  margin: 0 0 4px;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.count {
+  color: #57606a;
+  font-weight: normal;
+}
+
+.app-card {
+  background: #fff;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  padding: 10px;
+  cursor: grab;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.app-card h3 {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.app-card .job-meta {
+  font-size: 0.8rem;
+}
+
+.app-card select {
+  font: inherit;
+  font-size: 0.8rem;
+  padding: 2px 4px;
+}
+
+.notes {
+  text-align: left;
+  background: none;
+  border: 1px dashed #d0d7de;
+  border-radius: 4px;
+  padding: 4px 6px;
+  font: inherit;
+  font-size: 0.8rem;
+  color: #57606a;
+  cursor: text;
+  white-space: pre-wrap;
+}
+
+.notes-edit textarea {
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  font-size: 0.8rem;
+}
+
+.notes-actions {
+  display: flex;
+  gap: 6px;
+}
+
+/* Phones: stack the columns */
+@media (max-width: 700px) {
+  .board {
+    grid-template-columns: 1fr;
+  }
+}
