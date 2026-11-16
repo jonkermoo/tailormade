@@ -29,7 +29,7 @@ Job seekers bounce between LinkedIn, Handshake, company career pages and spreads
 | ----------- | --------------------------------------- | ---------------------------------------------------- |
 | `frontend/` | Static Web Apps (Free)                  | React dashboard, built-in sign-in                    |
 | `api/`      | SWA managed Functions (Python)          | Jobs, filters, tracker and tailoring endpoints       |
-| `worker/`   | Function App (Python, Flex Consumption) | Timer crawler every 2 hours, queue processor         |
+| `worker/`   | Function App (Python, Flex Consumption) | Timer crawler once a day, queue processor            |
 | `db/`       | Azure SQL Database (free offer)         | Jobs, users, filters, applications, resume versions  |
 |             | Blob Storage                            | Raw crawl snapshots, uploaded resumes, tailored PDFs |
 |             | Queue Storage                           | Hands each crawled job to the processor              |

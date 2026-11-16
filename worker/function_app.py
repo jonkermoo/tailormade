@@ -1,6 +1,6 @@
 """Background worker: the crawler pipeline.
 
-crawl_jobs (timer, every 2 hours)
+crawl_jobs (timer, once a day at 13:00 UTC)
     -> raw snapshot JSON to Blob Storage (container: raw-crawls)
     -> one message per job to Queue Storage (queue: jobs-to-process)
 process_job (queue trigger)
@@ -18,7 +18,7 @@ from processor import db, pipeline
 app = func.FunctionApp()
 
 
-@app.timer_trigger(arg_name="timer", schedule="0 0 */2 * * *", run_on_startup=False)
+@app.timer_trigger(arg_name="timer", schedule="0 0 13 * * *", run_on_startup=False)
 @app.blob_output(arg_name="snapshot",
                  path="raw-crawls/{DateTime}.json",
                  connection="AzureWebJobsStorage")
