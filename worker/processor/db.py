@@ -15,6 +15,7 @@ shared. The only dialect difference is how an INSERT returns the new id.
 import logging
 import os
 import sqlite3
+import time
 from pathlib import Path
 
 log = logging.getLogger(__name__)
@@ -139,11 +140,39 @@ def connect_sqlite(path=None):
     return JobRepository(conn, "sqlite")
 
 
+def is_waking_up(exc):
+    """True for the errors a paused serverless database gives while it resumes.
+
+    40613 = database not currently available, HYT00 = login timeout,
+    08001 / 08S01 = connection refused or reset.
+    """
+    text = str(exc)
+    return any(code in text for code in ("40613", "HYT00", "08001", "08S01"))
+
+
+def connect_with_retry(open_conn, attempts=6, delay_seconds=10, sleep=time.sleep):
+    """Call open_conn(), retrying while the database wakes from auto-pause.
+
+    The free Azure SQL offer pauses after an hour idle and takes up to a
+    minute to resume. Waiting here is cheaper than burning the queue
+    message's retries, which sends it to the poison queue.
+    """
+    for attempt in range(1, attempts + 1):
+        try:
+            return open_conn()
+        except Exception as exc:
+            if attempt == attempts or not is_waking_up(exc):
+                raise
+            log.info("Database not ready (attempt %d/%d), retrying in %ds",
+                     attempt, attempts, delay_seconds)
+            sleep(delay_seconds)
+
+
 def connect():
     """Open the repository for whatever database this environment has."""
     conn_str = os.environ.get("SQL_CONNECTION_STRING")
     if conn_str:
         import pyodbc  # only needed when talking to Azure SQL
-        return JobRepository(pyodbc.connect(conn_str), "mssql")
+        return JobRepository(connect_with_retry(lambda: pyodbc.connect(conn_str)), "mssql")
     log.warning("SQL_CONNECTION_STRING not set, using local SQLite fallback")
     return connect_sqlite()
