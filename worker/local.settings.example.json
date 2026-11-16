@@ -8,6 +8,8 @@
     "CRAWL_KEYWORDS": "engineer,developer,intern,analyst",
     "ADZUNA_APP_ID": "",
     "ADZUNA_APP_KEY": "",
-    "ADZUNA_QUERY": "software engineer"
+    "ADZUNA_QUERY": "software engineer",
+    "SQL_CONNECTION_STRING": "",
+    "LOCAL_SQLITE_PATH": ""
   }
 }
