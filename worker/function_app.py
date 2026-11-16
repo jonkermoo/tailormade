@@ -8,6 +8,7 @@ process_job (queue trigger)
     -> (next) push live alert
 """
 import json
+import typing
 import logging
 
 import azure.functions as func
@@ -27,7 +28,7 @@ app = func.FunctionApp()
                   connection="AzureWebJobsStorage")
 def crawl_jobs(timer: func.TimerRequest,
                snapshot: func.Out[str],
-               outbox: func.Out[list[str]]) -> None:
+               outbox: func.Out[typing.List[str]]) -> None:
     raw, jobs = crawl()
     snapshot.set(json.dumps(raw))
     outbox.set([json.dumps(job) for job in jobs])
