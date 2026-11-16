@@ -1,0 +1,13 @@
+{
+  "name": "inst347-counter-frontend",
+  "version": "1.0.0",
+  "description": "INST347 starter - website (served by App Service)",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

@@ -121,3 +121,18 @@ Secrets (Adzuna key, SQL connection string) go only in `local.settings.json`, wh
 - Progress is tracked on the GitHub Projects board; link each PR to its issue.
 
 Details: [docs/branching.md](docs/branching.md).
+
+## Our team
+
+| Name            | Role                                   |
+| --------------- | -------------------------------------- |
+| Johnny Zhu      | Azure host (owns the resource group), repo owner |
+| Ebulo Mejia     | Collaborator, Contributor on the resource group  |
+| Dylan Wu        | Collaborator, Contributor on the resource group  |
+| Joshua Okeke    | Collaborator, Contributor on the resource group  |
+| Lina Romero     | Collaborator, Contributor on the resource group  |
+| Ayomide Ogunbode | Collaborator, Contributor on the resource group |
+
+## Pipeline starter (`counter/`)
+
+`counter/` holds the course's counter starter app, used to set up our GitHub Actions to Azure pipeline before the real project code moves onto it. `counter/frontend/` deploys to an App Service Web App and `counter/api/` deploys to a Function App backed by Cosmos DB. Each folder has its own workflow in `.github/workflows/` that runs only when that folder changes. See [counter/README.md](counter/README.md).
