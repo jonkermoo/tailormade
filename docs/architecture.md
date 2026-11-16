@@ -4,7 +4,7 @@
 
 ## Following one job through the system
 
-1. **Crawl.** The worker's timer function `crawl_jobs` runs every 2 hours. It calls the Greenhouse and Lever public job board APIs for a configured list of companies, plus Adzuna search when a key is set.
+1. **Crawl.** The worker's timer function `crawl_jobs` runs once a day (13:00 UTC). Each run wakes the free-tier Azure SQL database, so a more frequent schedule would use up its monthly free compute. It calls the Greenhouse and Lever public job board APIs for a configured list of companies, plus Adzuna search when a key is set.
 2. **Snapshot.** The raw responses from that run are saved as one JSON file in Blob Storage (`raw-crawls/`). This lets us debug a bad run or replay it without calling the APIs again.
 3. **Queue.** Each job is normalized into a common shape and put on the `jobs-to-process` queue as its own message, so one bad posting can't break the whole run and the processor can scale out.
 4. **Process.** `process_job` computes the dedupe hash: SHA-256 of normalized company, title and city. The `jobs` table has a UNIQUE index on that hash, so the same posting found on two sites becomes one job with two rows in `job_sources`.

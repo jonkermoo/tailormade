@@ -1,0 +1,69 @@
+{
+  "started_at": "2026-11-15T14:00:00+00:00",
+  "note": "Trimmed sample in the same shape as a raw-crawls snapshot. Used by python -m processor.demo.",
+  "sources": [
+    {
+      "source": "greenhouse",
+      "target": "stripe",
+      "payload": {
+        "jobs": [
+          {"id": 7301001, "title": "Software Engineer, Backend (New Grad)", "company_name": "Stripe",
+           "location": {"name": "Seattle, WA"}, "absolute_url": "https://stripe.com/jobs/listing/7301001",
+           "first_published": "2026-11-14T16:00:00-08:00"},
+          {"id": 7301002, "title": "Software Engineer, Payments", "company_name": "Stripe",
+           "location": {"name": "Seattle, WA"}, "absolute_url": "https://stripe.com/jobs/listing/7301002",
+           "first_published": "2026-11-12T09:00:00-08:00"},
+          {"id": 7301003, "title": "Staff Engineer, Infrastructure", "company_name": "Stripe",
+           "location": {"name": "Dublin, Ireland"}, "absolute_url": "https://stripe.com/jobs/listing/7301003",
+           "first_published": "2026-10-20T09:00:00+00:00"}
+        ]
+      }
+    },
+    {
+      "source": "greenhouse",
+      "target": "discord",
+      "payload": {
+        "jobs": [
+          {"id": 8801001, "title": "Backend Engineer, Python", "company_name": "Discord",
+           "location": {"name": "Remote - US"}, "absolute_url": "https://discord.com/jobs/8801001",
+           "first_published": "2026-11-15T10:00:00-08:00"},
+          {"id": 8801002, "title": "Software Engineering Intern, Summer 2027", "company_name": "Discord",
+           "location": {"name": "San Francisco, CA"}, "absolute_url": "https://discord.com/jobs/8801002",
+           "first_published": "2026-11-10T12:00:00-08:00"}
+        ]
+      }
+    },
+    {
+      "source": "lever",
+      "target": "spotify",
+      "payload": [
+        {"id": "3f1c-backend-ny", "text": "Backend Engineer I", "createdAt": 1794700800000,
+         "categories": {"location": "New York, NY"}, "hostedUrl": "https://jobs.lever.co/spotify/3f1c-backend-ny",
+         "descriptionPlain": "Build Python and Java services for personalization."},
+        {"id": "9a2e-ios-sto", "text": "Senior iOS Engineer", "createdAt": 1793664000000,
+         "categories": {"location": "Stockholm"}, "hostedUrl": "https://jobs.lever.co/spotify/9a2e-ios-sto",
+         "descriptionPlain": "Swift, UIKit, SwiftUI."}
+      ]
+    },
+    {
+      "source": "adzuna",
+      "target": "software engineer",
+      "payload": {
+        "results": [
+          {"id": "5012345671", "title": "Software Engineer - Backend New Grad",
+           "company": {"display_name": "Stripe Inc"}, "location": {"display_name": "Seattle, King County"},
+           "redirect_url": "https://www.adzuna.com/details/5012345671", "created": "2026-11-15T02:10:00Z",
+           "description": "Join Stripe as a new grad backend engineer working in Ruby, Java and Python."},
+          {"id": "5012345672", "title": "Backend Engineer, Python",
+           "company": {"display_name": "Discord Inc."}, "location": {"display_name": "Remote"},
+           "redirect_url": "https://www.adzuna.com/details/5012345672", "created": "2026-11-15T09:30:00Z",
+           "description": "Python backend services for messaging at scale."},
+          {"id": "5012345673", "title": "Junior Data Engineer",
+           "company": {"display_name": "Datadog"}, "location": {"display_name": "New York, NY"},
+           "redirect_url": "https://www.adzuna.com/details/5012345673", "created": "2026-11-13T15:00:00Z",
+           "description": "Python, SQL and Spark pipelines."}
+        ]
+      }
+    }
+  ]
+}

@@ -29,7 +29,7 @@ Job seekers bounce between LinkedIn, Handshake, company career pages and spreads
 | ----------- | --------------------------------------- | ---------------------------------------------------- |
 | `frontend/` | Static Web Apps (Free)                  | React dashboard, built-in sign-in                    |
 | `api/`      | SWA managed Functions (Python)          | Jobs, filters, tracker and tailoring endpoints       |
-| `worker/`   | Function App (Python, Flex Consumption) | Timer crawler every 2 hours, queue processor         |
+| `worker/`   | Function App (Python, Flex Consumption) | Timer crawler once a day, queue processor            |
 | `db/`       | Azure SQL Database (free offer)         | Jobs, users, filters, applications, resume versions  |
 |             | Blob Storage                            | Raw crawl snapshots, uploaded resumes, tailored PDFs |
 |             | Queue Storage                           | Hands each crawled job to the processor              |
@@ -101,6 +101,7 @@ pip install -r requirements-dev.txt
 cp local.settings.example.json local.settings.json
 pytest                          # unit tests
 python -m crawler.run           # one crawl, prints what it found
+python -m processor.demo        # sample crawl -> dedupe -> database -> scores
 azurite --silent --location .azurite   # in a second terminal
 func start                      # runs the timer and queue functions
 ```
@@ -110,6 +111,14 @@ To trigger the crawler without waiting for the timer while `func start` is runni
 ```bash
 curl -X POST http://localhost:7071/admin/functions/crawl_jobs -H "Content-Type: application/json" -d "{}"
 ```
+
+How the queue processor handles each job (`worker/processor/`):
+
+1. Recomputes the dedupe hash (normalized company + title + city, SHA-256).
+2. Upserts into `jobs` and `job_sources` from `db/schema.sql`. A job already in `jobs` (same hash) is not inserted again; the new site is added as another `job_sources` row.
+3. Scores the job 0 to 100 against each saved filter with alerts on: keywords 40, location/remote 25, posting recency 20, seniority 15. The weights are explained in `processor/scoring.py`.
+
+**Database:** set `SQL_CONNECTION_STRING` in `local.settings.json` (or the Function App settings) to use Azure SQL. If it is empty, the worker falls back to a local SQLite file at `worker/.local/tailormade.db` (override with `LOCAL_SQLITE_PATH`) with the same tables, so everything runs before Azure SQL is provisioned. `python -m processor.demo` always starts a fresh `worker/.local/demo.db` unless the connection string is set. Use `--live` to crawl the real APIs instead of the bundled sample.
 
 Secrets (Adzuna key, SQL connection string) go only in `local.settings.json`, which is gitignored. Never commit real keys.
 
