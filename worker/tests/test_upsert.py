@@ -1,3 +1,5 @@
+import pytest
+
 from crawler.normalize import make_job
 from processor import db
 from processor.pipeline import process_job
@@ -97,3 +99,40 @@ def test_sqlite_repository_runs_the_same_flow():
     cur = repo.conn.cursor()
     assert cur.execute("SELECT COUNT(*) FROM jobs").fetchone()[0] == 1
     assert cur.execute("SELECT COUNT(*) FROM job_sources").fetchone()[0] == 2
+
+
+class IntegrityError(Exception):
+    """Same class name pyodbc and sqlite3 use for a UNIQUE violation."""
+
+
+class RacingRepo(FakeRepo):
+    """Another worker inserts the same job between our lookup and insert."""
+
+    def __init__(self, winner):
+        super().__init__()
+        self.winner = winner
+
+    def insert_job(self, job, now):
+        if self.winner is not None:
+            self.jobs[99] = self.winner
+            self.sources.append((99, self.winner["source"], self.winner["source_job_id"]))
+            self.winner = None
+            raise IntegrityError("Violation of UNIQUE KEY constraint 'uq_jobs_dedupe_hash'")
+        return super().insert_job(job, now)
+
+
+def test_unique_key_race_is_recorded_as_duplicate():
+    repo = RacingRepo(winner=STRIPE_GH)
+    result = upsert_job(repo, STRIPE_ADZUNA)
+    assert result.status == DUPLICATE
+    assert result.job_id == 99
+    assert (99, "adzuna", "A9") in repo.sources
+
+
+def test_other_insert_errors_are_not_swallowed():
+    class BrokenRepo(FakeRepo):
+        def insert_job(self, job, now):
+            raise RuntimeError("disk full")
+
+    with pytest.raises(RuntimeError):
+        upsert_job(BrokenRepo(), STRIPE_GH)
