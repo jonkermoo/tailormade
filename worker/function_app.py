@@ -4,15 +4,16 @@ crawl_jobs (timer, every 2 hours)
     -> raw snapshot JSON to Blob Storage (container: raw-crawls)
     -> one message per job to Queue Storage (queue: jobs-to-process)
 process_job (queue trigger)
-    -> dedupe hash -> (next) upsert into Azure SQL, score, push live alert
+    -> dedupe hash -> upsert into Azure SQL -> score against saved filters
+    -> (next) push live alert
 """
 import json
 import logging
 
 import azure.functions as func
 
-from crawler.normalize import dedupe_hash
 from crawler.run import crawl
+from processor import db, pipeline
 
 app = func.FunctionApp()
 
@@ -39,9 +40,16 @@ def crawl_jobs(timer: func.TimerRequest,
                    connection="AzureWebJobsStorage")
 def process_job(msg: func.QueueMessage) -> None:
     job = json.loads(msg.get_body().decode("utf-8"))
-    # Recompute rather than trust the message, so the rule lives in one place
-    job["dedupe_hash"] = dedupe_hash(job["company"], job["title"], job["location"])
-    logging.info("Processed %s | %s | %s -> %s",
-                 job["company"], job["title"], job["location"], job["dedupe_hash"][:12])
-    # TODO: upsert into jobs/job_sources (db/schema.sql), score against
-    # saved_filters, and send a SignalR message for high matches.
+    repo = db.connect()
+    try:
+        result = pipeline.process_job(repo, job, pipeline.load_filters(repo))
+        repo.commit()
+    except Exception:
+        repo.rollback()
+        raise  # the message is retried, then moved to the poison queue
+    finally:
+        repo.close()
+    logging.info("%s job %d: %s | %s | %s (best score %s)",
+                 result.status, result.job_id, job["company"], job["title"],
+                 job["location"], result.best_score)
+    # TODO: send a SignalR message when a new job beats a filter's min_score
